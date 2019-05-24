@@ -1,0 +1,62 @@
+---
+output:
+  github_document:
+    html_preview: true
+---
+
+<!-- README.md is generated from README.Rmd. Please edit that file -->
+
+```{r, knitr_setup, echo = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  echo = TRUE,
+  out.width='750px', dpi=200,
+  comment = "#>",
+  fig.path = "README-"
+
+)
+```
+
+# tpca
+An `R` package for automatically selecting which principal components
+to keep for detecting changes in the mean and/or covariance matrix.
+The choice of principal axes to project data onto is *tailored* to a normal 
+state covariance matrix and a customizable distribution over relevant 
+change scenarios. Functionality for both regular PCA and dynamic PCA exists.
+
+## Overview
+Functionality:
+
+* A function for tailoring PCA to a regular covariance matrix.
+* A function for tailoring PCA to a covariance matrix based on lagged observations, i.e., a dynamic PCA variant.
+* A generic function for setting up a uniform change distribution.
+* Functions for generating random correlation matrices, covariance matrices and
+  correlation matrix estimates.
+* Summary and plot functions.
+
+TPCA is designed to be used in for instance high-dimensional sensor network applications,
+where changes in the mean and/or covariance matrix indicates a system fault.
+TPCA helps reduce the dimension to those principal components that are most
+sensitive to the relevant changes. This both saves computation and can
+increase the precision or speed with which changes are detected.
+
+## Installation
+From inside `R`, use the following command:
+```{r install, eval = FALSE}
+# install.packages("devtools")
+devtools::install_github("NeymanPearsonFan1/tpca")
+# library(tpca)
+```
+
+## Usage
+```{r example, echo = TRUE}
+library(tpca)
+cor_mat <- rcor_mat(10)  # Generate random correlation matrix.
+tpca_obj <- tpca(cor_mat, change_distr = 'semisparse_uniform', cutoff = 0.99)
+ggplot_types(tpca_obj)
+ggplot_sparsities(tpca_obj)
+ggplot_prop(tpca_obj)
+summary(tpca_obj)
+```
+
+## References

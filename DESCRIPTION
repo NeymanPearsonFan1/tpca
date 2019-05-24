@@ -1,0 +1,28 @@
+Package: tpca
+Type: Package
+Title: A function for tailoring PCA to change detection
+Version: 0.0.1
+Author: NeymanPearsonFan
+Maintainer: NeymanPearsonFan1 <fictitious@email.com>
+Description: Functionality for automatically selecting which principal components
+    to keep for detecting changes in the mean and/or covariance matrix.
+    The choice of principal axes to project data onto is tailored to a normal 
+    state covariance matrix and a customizable distribution over relevant 
+    change scenarios. Both regular PCA and dynamic PCA can be handled.
+License: MIT + file LICENSE
+Encoding: UTF-8
+LazyData: true
+Imports:
+    Matrix (>= 1.2),
+    assertthat (>= 0.2.0),
+    clusterGeneration (>= 1.3.4),
+    RSpectra (>= 0.13),
+    ggplot2 (>= 2.2.1),
+    reshape2 (>= 1.4.3)
+Depends: R (>= 3.4.0)
+RoxygenNote: 6.1.1
+Suggests: knitr,
+    rmarkdown,
+    testthat,
+    MASS
+VignetteBuilder: knitr
